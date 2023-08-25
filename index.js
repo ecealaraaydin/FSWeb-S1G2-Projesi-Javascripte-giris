@@ -52,9 +52,31 @@ Aşağıdakileri yaparak carpma isimli fonksiyonu tamamla:
    3. console.log(carpma(7,4)) ile yazdığın fonsiyonu test edin. Console'da sonucu 28 olarak görmelisin.
 */
 
-function carpma(/*buraya kodunu yazabilirsin*/) {
-  /*buraya kodunu yazabilirsin*/
+function carpma(a,b) {
+  let sum = a*b;
+  console.log("Çarpım işlemi sonucu = ", sum);
+  return sum;
 }
+console.log(carpma(7,4))
+
+// TUNÇ HOCA - ALIŞTIRMA
+// Benim elimde bir array var ve ben bunları çarpmak istiyorum. 
+// Array boyutunu bilmiyorum
+// Array içerisindki değerlerin numeric olup olmadığını kontrol etmem lazım 
+
+function carpma_ex(arr) {
+  let carpmaSonucu = 1;
+  for (let i = 0; i < arr.length; i++) {
+    if(typeof arr[i] == "number") {
+      carpmaSonucu = arr[i]*carpmaSonucu;
+    }
+  }
+   return carpmaSonucu;
+}
+
+console.log("Array sayılarının çarpımı = " + carpma_ex([1, 2, 3, 4, 5, -10]));      
+
+
 
 /* Görev 2 : Köpeğin Yaşı */
 
@@ -65,9 +87,28 @@ Aşağıdakileri yap:
  3. Hesaplanan köpeğin yaşını dönün.
  */
 
-function kopeginYasi(/*buraya kodunu yazabilirsin*/) {
-  /*buraya kodunu yazabilirsin*/
+function kopeginYasi(x) {
+  return x*7; 
 }
+
+// TUNÇ HOCA - ALIŞTIRMA
+// Sadece köpeğin yaşını değil, köpeğin objesini dönsün
+
+function hayvanYasi(x, hayvan_cinsi){
+  if (hayvan_cinsi == "köpek") {
+    console.log("Köpeğin Yaşı = " + (x*7));
+  } else if(hayvan_cinsi == "kedi") {
+    console.log("Kedinin Yaşı = " + (x*3));
+  } else if(hayvan_cinsi == "dinazor") {
+    console.log("Hesaplanamadı");
+  }else{
+    console.log("Geçersiz Hayvan");
+  }
+}
+
+hayvanYasi(3, "köpek")
+hayvanYasi(3, "kedi")
+hayvanYasi(3, "dinazor")
 
 /* Görev 3 */
 /*
@@ -82,10 +123,63 @@ Aşağıdakileri oyun isimli fonksiyonu kullanarak yap.
 
 OYUNUN KURALLARI: Makas Kağıdı yener| Kağıt Taşı yener | Taş Makas'ı yener | veya beraberlik olur.
 */
+/*
+function oyun(oyuncu, bilgisayar) {
+  if (oyuncu === "Taş" && bilgisayar === "Makas") {
+    return 'Kazandın!';
+  }else if(oyuncu === "Taş" && bilgisayar === "Kağıt") {
+    return 'Kaybettin!';
+  }else if(oyuncu === "Taş" && bilgisayar === "Taş") {
+    return 'Beraberlik';
+  }else if(oyuncu === "Kağıt" && bilgisayar === "Taş") {
+    return 'Kazandın!';
+  }else if(oyuncu === "Kağıt" && bilgisayar === "Makas") {
+    return 'Kaybettin!';
+  }else if(oyuncu === "Kağıt" && bilgisayar === "Kağıt") {
+    return 'Beraberlik';
+  }else if(oyuncu === "Makas" && bilgisayar === "Kağıt") {
+    return 'Kazandın!';
+  }else if(oyuncu === "Makas" && bilgisayar === "Taş") {
+    return 'Kaybettin!';
+  }
+}
+
+// TUNÇ HOCA - ALIŞTIRMA
+// Yukarıdaki if'leri nasıl azaltabilirim? 
 
 function oyun(oyuncu, bilgisayar) {
-  /*buraya kodunu yazabilirsin*/
+  if(oyuncu == bilgisayar){
+    return 'Beraberlik';
+  if (oyuncu === "Taş" && bilgisayar === "Makas") {
+    return 'Kazandın!';
+  }else if(oyuncu === "Taş" && bilgisayar === "Kağıt") {
+    return 'Kaybettin!';
+  }else if(oyuncu === "Kağıt" && bilgisayar === "Taş") {
+    return 'Kazandın!';
+  }else if(oyuncu === "Kağıt" && bilgisayar === "Makas") {
+    return 'Kaybettin!';
+  }else if(oyuncu === "Makas" && bilgisayar === "Kağıt") {
+    return 'Kazandın!';
+  }else if(oyuncu === "Makas" && bilgisayar === "Taş") {
+    return 'Kaybettin!';
+    }
+  }
 }
+*/
+// veya sadece kazanılan senaryoları yaz...(tersi de uygulanabilir)
+function oyun(oyuncu, bilgisayar) {
+  if(oyuncu == bilgisayar){
+    return 'Beraberlik';
+  }
+  if((oyuncu === "Makas" && bilgisayar === "Kağıt")
+  || (oyuncu === "Taş" && bilgisayar === "Makas")
+  || (oyuncu === "Kağıt" && bilgisayar === "Taş")) {
+    return 'Kazandın!';
+    }else {
+      return 'Kaybettin!';
+  }
+}
+
 
 // Şimdi Taş, Kağıt, Makas oyununu bilgisayara karşı oynayalım!
 /*
@@ -103,6 +197,14 @@ function oyun(oyuncu, bilgisayar) {
 Örn: console.log(oyun("Makas",bilgisayarinSecimi()))
 */
 
+let tkm = ["Taş", "Kağıt", "Makas"];
+
+function bilgisayarinSecimi(){
+  return tkm[Math.floor(Math.random() * tkm.length)];
+}
+
+console.log(oyun("Makas",bilgisayarinSecimi()))
+
 /* Görev 4 : Metrik Dönüştürücü */
 
 //Görev 4a - Kilometreden Mil
@@ -113,9 +215,23 @@ Aşağdaki milDonusturucu fonksiyonunu aşağıdakileri kullanarak tamamla:
 3. Mil değerini geri dönün
 */
 
-function milDonusturucu(/*buraya kodunu yazabilirsin*/) {
-  /*buraya kodunu yazabilirsin*/
+function milDonusturucu(x) {
+  return x * 0.621371;
 }
+
+// TUNÇ HOCA - ALIŞTIRMA
+// Object dönsün bir tane. Meter ve Mile fieldları olsun. Ayrı bir fonksiyonda:
+
+function milDonusturucu_ex(x){
+  let distance={};
+  distance.meter = x;
+  distance.mile = milDonusturucu(x);
+  console.log(distance);
+  return distance;
+}
+
+milDonusturucu_ex(10);
+
 
 //Görev 4b - Santimetreden Feet
 /*
@@ -127,9 +243,22 @@ Aşağıdakileri feetDonusturucu fonsiyonunu kullanarak yap:
 Google'da arama ipucu: "feet cm dönüştürme"
 */
 
-function feetDonusturucu(/*buraya kodunu yazabilirsin*/) {
-  /*buraya kodunu yazabilirsin*/
+function feetDonusturucu(cm) {
+  return (cm / 30.48)
+};
+
+// TUNÇ HOCA - ALIŞTIRMA
+// Object dönsün bir tane. Cm ve feet fieldları olsun. Ayrı bir fonksiyonda:
+
+function feetDonusturucu_ex(cm){
+  let cm_ft={
+    "centimeter" : cm,
+    "feet" : cm / 30.48
+  }
+  return cm_ft
 }
+
+console.log(feetDonusturucu_ex(1000));
 
 /* Görev 5 : 5 küçük maymun yatakta zıplamış şarkısını çocuklar için hazırladığımı varsayalım. https://www.youtube.com/watch?v=e4EJ34xnlxk */
 
@@ -144,8 +273,8 @@ Aşağıdakileri cocukSarkisi fonksiyonunda yap:
 4. Bu döngüde, her seferinde cocukSarkisi fonsiyonu çalışsın ve console.log'a dönen metni yazdırsın.
 */
 
-function cocukSarkisi(/*buraya kodunu yazabilirsin*/) {
-  /*buraya kodunu yazabilirsin*/
+function cocukSarkisi(x) {
+  return x + " küçük maymun yatakta zıplamış, biri düşüp başını çarpmış, Anne doktoru aramış, Doktor çok kızmış: Bir daha yatakta zıplamak yok!"
 }
 
 /* Görev 6 : Not Hesaplayıcı */
@@ -163,8 +292,18 @@ Aşağdakileri notHesapla fonksiyonunda yap.
  dönün
 */
 
-function notHesapla(/*buraya kodunu yazabilirsin*/) {
-  /*buraya kodunu yazabilirsin*/
+function notHesapla(not) {
+  if(not >= 90){
+    return 'A aldın';
+  }else if(not >= 80){
+    return 'B aldın';
+  }else if(not >= 70){
+    return 'C aldın';
+  }else if(not >= 60){
+    return 'D aldın';
+  }else{
+    return 'F aldın'
+  }
 }
 
 /* Bonus Çalışma: Sesli harf sayacı - Kaç tane sesli harf var? */
